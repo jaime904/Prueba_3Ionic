@@ -1,15 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Notificación local
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <div id="container">
-    <ion-button (click)="scheduleNotification()">Notificacion</ion-button>
+  <div class="items">
+    <ion-item class="container">
+      <ion-button expand="block" (click)="notificar()">Generar notificación</ion-button>
+    </ion-item>
+    <ion-item class="container">
+      <ion-button expand="block" (click)="cancelar()">Borrar primera notificación</ion-button>
+    </ion-item>
+    <ion-item class="container">
+      <ion-button expand="block" (click)="cancelarTodas()">Borrar todas las notificaciones</ion-button>
+    </ion-item>
   </div>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>

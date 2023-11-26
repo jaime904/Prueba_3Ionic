@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LocalNotifications, ScheduleOptions } from '@capacitor/local-notifications';
+import { NotificacionesService } from  './../servicios/notificaciones.service';
 
 @Component({
   selector: 'app-tab1',
@@ -8,25 +8,20 @@ import { LocalNotifications, ScheduleOptions } from '@capacitor/local-notificati
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(public notificaciones: NotificacionesService ) {}
 
-  async scheduleNotification() {
-    let options: ScheduleOptions = {
-      notifications: [
-        {
-          id: 111,
-          title: "Notificacion 1",
-          body: "Esta es la primera notificacion", //esto no aparece
-          largeBody: "Esta es la primera notificacion!!",
-          summaryText: "Exito!!"
-        }
-      ]
-    }
-    try{
-      await LocalNotifications.schedule(options);
-    }
-    catch(ex){
-      alert(JSON.stringify(ex));
-    }
+  async notificar(){
+    this.notificaciones.permisoNotificacion().then( () => {
+      this.notificaciones.enviarNotificacion();
+    })
   }
+
+  cancelar(){
+    this.notificaciones.cancelarNotificacion();
+  }
+
+  cancelarTodas(){
+    this.notificaciones.cancelarTodasLasNotificaciones();
+  }
+
 }

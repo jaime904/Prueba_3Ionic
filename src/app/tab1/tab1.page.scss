@@ -1,0 +1,15 @@
+.items{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  height: 100%;
+}
+
+.container ion-button{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  min-width: 300px;
+}
