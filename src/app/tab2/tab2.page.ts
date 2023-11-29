@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Network, ConnectionStatus } from '@capacitor/network';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,37 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  status: string="";
+  conectionType: string="";
+
+  constructor(
+    private change: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.getNetworkStatus()
+  }
+
+  getNetworkStatus(){
+
+    Network.getStatus().then(
+      (status:ConnectionStatus)=>{
+        this.status = (status.connected)?
+        "connected":"disconnected";
+        this.conectionType = status.connectionType;
+        this.onNetworkChanged();
+      }
+    )
+  }
+
+  onNetworkChanged()
+  {
+    Network.addListener("networkStatusChange",(status)=>{
+      this.status = (status.connected)?
+      "connected":"disconnected";
+      this.conectionType = status.connectionType;
+      this.change.detectChanges();
+    })
+  }
 
 }
