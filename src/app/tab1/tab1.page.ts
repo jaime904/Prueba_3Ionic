@@ -16,11 +16,11 @@ export class Tab1Page {
     })
   }
 
-  cancelar(){
+   async cancelar(){
     this.notificaciones.cancelarNotificacion();
   }
 
-  cancelarTodas(){
+   async cancelarTodas(){
     this.notificaciones.cancelarTodasLasNotificaciones();
   }
 
